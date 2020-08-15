@@ -1,0 +1,54 @@
+<template>
+  <div id="app">
+
+    
+    
+    <router-view></router-view>
+  </div>
+</template>
+
+<script>
+import aboutUs from "./aboutUs"
+export default {
+
+  name: 'app',
+  data() {
+    return {
+      msg: "หน้าบริจาค",
+    };
+  },
+
+};
+</script>
+
+<style lang="scss">
+
+
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+h1,h3 {
+  color: white;
+  font-family: "Mitr"
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  color: #42b983;
+}
+</style>
