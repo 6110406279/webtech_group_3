@@ -1,6 +1,11 @@
 <template>
   <div>
 
+      <h1 style="background-image: linear-gradient(to right, #2d4057, #2d4057, #05dfd7);">หน้าบริจาคของ</h1>
+      <h3 style="background-color: black">
+        <li><router-link to="/" tag="button" style="color:white">หน้าหลัก</router-link> </li>
+        <li><router-link to="/About" tag="button" style="color:white">ผู้บริจาค</router-link> </li>
+      </h3>
     <table class="table">
       <thead style ="background-color: #40434B; color:white">
         <tr>
@@ -24,8 +29,6 @@
         </tr>
       </tbody>
     </table>
-
-    <router-link to = "/aboutUs.vue">help</router-link>
 
   </div>
 </template>

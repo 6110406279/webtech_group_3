@@ -4,8 +4,8 @@
       <h1>เกี่ยวกับเรา</h1>
     </div>
     <nav>
-      <button>หน้าหลัก</button>
-      <button>บริจาค</button>
+      <router-link to="/" tag="button">หน้าหลัก</router-link>
+      <router-link to="/Donate" tag="button">บริจาค</router-link>
     </nav>
     <div class="topic_member">
       <h1>ทีมงาน</h1>

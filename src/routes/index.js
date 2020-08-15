@@ -1,6 +1,7 @@
 import VueRouter from "vue-router"
-import aboutUs from '../aboutUs.vue'
+import About from '../About.vue'
 import Home from '../Home.vue'
+import Donate from '../Donate.vue'
 
 const routes = [
     {
@@ -9,9 +10,14 @@ const routes = [
         component: Home
     },
     {
-        path: '/aboutUs',
-        name: 'aboutUs',
-        component: aboutUs
+        path: '/About',
+        name: 'About',
+        component: About
+    },
+    {
+        path: '/Donate',
+        name: 'Donate',
+        component: Donate
     }
 ]
 

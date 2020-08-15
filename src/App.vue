@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import aboutUs from "./aboutUs"
 export default {
 
   name: 'app',
