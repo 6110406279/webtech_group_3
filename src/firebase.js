@@ -15,3 +15,7 @@ const app = initializeApp ( firebaseConfig )
 
 export const db = app.firestore()
 export const donationCollection = db.collection('donationList')
+export const donationCollection2 = db.collection('donationList2')
+export const donationCollection3 = db.collection('donationList3')
+export const donationCollection4 = db.collection('donationList4')
+export const donationCollection5 = db.collection('donated')

@@ -9,8 +9,11 @@
         class="lead"
         style="color:white;"
       >จัดทำขึ้นเพื่อประสานงานและช่วยเหลือเด็กยากไร้ เเละเด็กด้อยโอกาส</p>
-      <h3><router-link to="/About" tag="button" style="font-family:Mitr">ผู้บริจาค</router-link></h3>
+      <h3>
+        <router-link to="/About" tag="button" style="font-family:Mitr">ผู้บริจาค</router-link>
+      </h3>
     </div>
+
 
     <h4
       class="container display-5 text-center mb-3 text-require"
@@ -23,13 +26,29 @@
           style="width: 50rem; margin-left:100px;margin-left:120px;background-image: linear-gradient(to right, #2d4057, #2d4057, #05dfd7); "
         >
           <div class="card-body">
-            {{donationList}}
             <ul style="color:white;">
-              <li style="margin-bottom:50px;font-family:Mitr">น้ำดื่ม</li>
-              <li style="margin-bottom:50px;font-family:Mitr">อาหาร</li>
-              <li style="margin-bottom:50px;font-family:Mitr">อุปกรณ์การเรียน</li>
-              <li style="margin-bottom:50px;font-family:Mitr">อุปกรณ์สำหรับออกกำลังกาย</li>
-              <h3><router-link to="/Donate" tag="button" style="font-family:Mitr">บริจาคสิ่งของ</router-link></h3>
+              <table class="table">
+                <thead style="background-color: #40434B; color:white">
+                  <tr>
+                    <th>น้ำดื่ม</th>
+                    <th>อาหาร</th>
+                    <th>อุปกรณ์การเรียน</th>
+                    <th>อุปกรณ์สำหรับออกกำลังกาย</th>
+                  </tr>
+                </thead>
+
+                <tbody style="background-color: gray;">
+                    <th>285</th>
+                    <th>624</th>
+                    <th>572</th>
+                    <th>287</th>
+                </tbody>
+              </table>
+              <h3>
+                <router-link to="/Donate" tag="button" style="font-family:Mitr">บริจาคสิ่งของ</router-link>
+              </h3>
+
+              <!--Carousel-->
               <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                   <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -38,13 +57,13 @@
                 </ol>
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img src="https://cdn.pixabay.com/photo/2016/03/18/15/21/help-1265227_960_720.jpg"  width="512" length="512" alt="..." />
+                     <img src="src\assets\home_pic1.jpg" width = "512" length ="512" alt="...">
                   </div>
                   <div class="carousel-item">
-                    <img src="https://cdn.pixabay.com/photo/2015/06/22/08/37/children-817365_960_720.jpg" width="512" length="512" alt="..." />
+                     <img src="src\assets\home_pic2.jpg" width = "512" length ="512" alt="...">
                   </div>
                   <div class="carousel-item">
-                    <img src="https://cdn.pixabay.com/photo/2016/06/19/07/20/family-1466262__340.jpg"  width="512" length="512" alt="..." />
+                     <img src="src\assets\home_pic3.jpg" width = "512" length ="512" alt="...">
                   </div>
                 </div>
                 <a
@@ -67,7 +86,6 @@
                 </a>
               </div>
             </ul>
-            
           </div>
         </div>
       </div>
@@ -83,6 +101,7 @@ export default {
       value: 45,
       max: 100,
       donationList: [],
+      donated: [],
     };
   },
   methods: {
@@ -90,17 +109,18 @@ export default {
       this.value = Math.random() * this.max;
     },
   },
+  firestore() {
+    return {
+      donationList: donationCollection.orderBy("num", "asc"),
+    };
+  },
 };
 </script>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-  background: transparent;
+.carousel-inner {
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
 }
 </style>

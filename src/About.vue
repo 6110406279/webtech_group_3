@@ -14,7 +14,7 @@
       <div class="column column_pic">
         <img
           class="member_img"
-          src="src\assets\117333115_297315638003250_4423666169006868222_n.png"
+          src="src\assets\member1.png"
           alt="omega"
         />
       </div>
@@ -29,7 +29,7 @@
       <div class="column column_pic">
         <img
           class="member_img"
-          src="src\assets\117602306_618694362171379_8655253337995060089_n.jpg"
+          src="src\assets\member2.jpg"
           alt="nook"
         />
       </div>
@@ -44,7 +44,7 @@
       <div class="column column_pic">
         <img
           class="member_img"
-          src="src\assets\117814870_631990707725255_1309828652430738470_n.jpg"
+          src="src\assets\member3.jpg"
           alt="peat"
         />
       </div>
