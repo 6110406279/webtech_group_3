@@ -11,7 +11,22 @@
     รับบริจาคสิ่งของโดยแยกประเภท แสดงหน้า ปริมาณสิ่งของที่ต้องการรับบริจาค และ ปริมาณที่บริจาคแล้ว ซึ่งสามารถเลือกได้ว่าจะบริจาคไปให้จังหวัดไหน
 
 -วิธีการติดตั้งสำหรับการพัฒนา
-    ??????
+    npm install --global @vue/cli
+    npm install --global @vue/cli-init
+
+    vue init charity-page
+    cd charity-page
+    npm install
+    code . & npm run dev
+
+    npm install vue-moment
+    npm install vue-router
+
+    npm install vuefire firebase
+    npm install -g firebase-tools
+    firebase login 
+    firebase init
+    firebase deploy
 
 -เงื่อนไขอื่นที่ผู้ร่วมพัฒนาหรือผู้ติดตั้งระบบจำเป็นต้องทราบ
-    ตั่งชื่อตัวแปรให้ไม่มีการซ้ำกัน เพื่อไม่ให้ Web มีการใช้ CSS Style แบบเดียวกันที่ไม่ต้องการ
+    ตั่งชื่อตัวแปรให้ไม่มีการซ้ำกัน เพื่อไม่ให้ Web มีการใช้ CSS Style แบบเดียวกันที่ไม่ต้องการ หน้าแรกมีการ Mock Up แถบสถานะจำนวนของที่ต้องการ
