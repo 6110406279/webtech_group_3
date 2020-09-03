@@ -14,7 +14,6 @@
       </h3>
     </div>
 
-
     <h4
       class="container display-5 text-center mb-3 text-require"
       style="font-family:Mitr"
@@ -27,23 +26,27 @@
         >
           <div class="card-body">
             <ul style="color:white;">
+
+
               <table class="table">
-                <thead style="background-color: #40434B; color:white">
-                  <tr>
+                <thead style="background-color: #40434B; color:white; font-family:Mitr" >
+                  <tr >
                     <th>น้ำดื่ม</th>
                     <th>อาหาร</th>
                     <th>อุปกรณ์การเรียน</th>
                     <th>อุปกรณ์สำหรับออกกำลังกาย</th>
                   </tr>
                 </thead>
-
-                <tbody style="background-color: gray;">
+                <tbody style="background-color: gray; font-family:Mitr">
                     <th>285</th>
                     <th>624</th>
                     <th>572</th>
                     <th>287</th>
                 </tbody>
+
               </table>
+
+
               <h3>
                 <router-link to="/Donate" tag="button" style="font-family:Mitr">บริจาคสิ่งของ</router-link>
               </h3>
@@ -94,10 +97,14 @@
 </template>
 
 <script>
-import { donationCollection } from "./firebase";
+import {mapState, mapActions} from 'vuex'
+import { donationCollection5 } from "../firebase";
+import { donationCollection } from "../firebase";
 export default {
   data() {
+
     return {
+      item1: 44,
       value: 45,
       max: 100,
       donationList: [],
@@ -112,8 +119,12 @@ export default {
   firestore() {
     return {
       donationList: donationCollection.orderBy("num", "asc"),
+      donated: donationCollection5.orderBy("num","asc")
     };
   },
+  computed: {
+    ...mapState('account',['user'])
+  }
 };
 </script>
 

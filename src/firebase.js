@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase'
+import * as firebase from 'firebase'
 
 const firebaseConfig = {
     apiKey: "AIzaSyCVa-fWIOGXdil99D_sDlpKNlYJmY326Us",
@@ -11,7 +11,7 @@ const firebaseConfig = {
     measurementId: "G-1QYZJ5894Y"
 };
 
-const app = initializeApp ( firebaseConfig )
+const app = firebase.initializeApp ( firebaseConfig )
 
 export const db = app.firestore()
 export const donationCollection = db.collection('donationList')

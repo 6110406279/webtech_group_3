@@ -12,13 +12,13 @@
       </li>
     </h3>
 
-    <h3 style="color:red">จังหวัดนครปฐม</h3>
+    <h3 style="color:red">จังหวัดกรุงเทพมหานคร</h3>
 
     <li>
       <div class="card" style="width: 18rem;">
-        <img src="src\assets\charity4.jpg" class="card-img-top" alt="..." />
+        <img src="src\assets\charity1.jpg" class="card-img-top" alt="..." />
         <div class="card-body-donate">
-          <router-link to="/Donate" tag="button" style="background-color: black;color: white">จ.กรุงเทพ</router-link>
+          <router-link to="/Donate2" tag="button" style="background-color: black;color: white">จ.นครปฐม</router-link>
         </div>
       </div>
     </li>
@@ -55,14 +55,14 @@
       </thead>
 
       <tbody style="background-color: gray;">
-        <tr v-for="donation in donationList2" :key="donation.id">
+        <tr v-for="donation in donationList" :key="donation.id">
           <td>{{donation.num}}</td>
           <td>{{donation.item}}</td>
           <td>{{donation.inStock}}</td>
           <td>{{donation.needItem}}</td>
           <td>
             <li>
-              <input style="background-color: white;"
+              <input
                 type="number"
                 id="quantity"
                 name="quantity"
@@ -71,7 +71,7 @@
               />
             </li>
             <li>
-              <button 
+              <button
                 v-if="donation.needItem!=0"
                 class="btn btn-primary"
                 @click="donateItem(donation, newDonation)"
@@ -85,17 +85,21 @@
 </template>
 
 <script>
-import { donationCollection2 } from "./firebase";
+import {mapState, mapActions} from 'vuex'
+import { donationCollection } from "../firebase";
 export default {
   data() {
     return {
       title: "Home Page",
-      donationList2: [],
+      donationList: [],
 
       newDonation: {
         quantity: 0,
       },
     };
+  },
+  computed: {
+    ...mapState('account',['user'])
   },
 
   methods: {
@@ -107,7 +111,7 @@ export default {
       }
       donation.inStock = num1;
       donation.needItem = num2;
-      donationCollection2.doc(donation.id).update({ ...donation });
+      donationCollection.doc(donation.id).update({ ...donation });
 
       if (newDonation.quantity > 0)
         alert("ขอบคุณที่ทำการบริจาคให้เด็กยากไร้ และเด็กด้อยโอกาสครับ :)");
@@ -115,7 +119,7 @@ export default {
   },
   firestore() {
     return {
-      donationList2: donationCollection2.orderBy("num", "asc"),
+      donationList: donationCollection.orderBy("num", "asc"),
     };
   },
 };
@@ -127,7 +131,7 @@ export default {
 }
 
 .card-body-donate{
-    background-color:gray;
+  background-color:gray;
 }
 
 .card-img-top {
