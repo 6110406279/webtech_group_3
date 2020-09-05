@@ -1,6 +1,29 @@
 <template>
   <div>
-    <div class="head">
+    <header>เกี่ยวกับเรา</header>
+    <div class="container-fluid member_container" style>
+      <div class="row" style>
+        <div class="col member_col">
+          <img class="member_pic" src="src\assets\member1.png" style="height:400px;" alt />
+          <h3 class="h_about" style="padding-top:20px;">ริว</h3>
+          <h4 class="h_about">อิศม์เดช พงศภัคไพบูลย์</h4>
+          <h4 class="h_about">6110406279</h4>
+        </div>
+        <div class="col member_col">
+          <img class="member_pic" src="src\assets\member2.jpg" style="height:400px;" alt />
+          <h3 class="h_about" style="padding-top:20px;">นุก</h3>
+          <h4 class="h_about">ณภัทร ศรประสิทธิ์</h4>
+          <h4 class="h_about">6110450766</h4>
+        </div>
+        <div class="col member_col">
+          <img class="member_pic" src="src\assets\member3.jpg" style="height:400px;" alt />
+          <h3 class="h_about" style="padding-top:20px;">พีท</h3>
+          <h4 class="h_about">เขมชาติ เสาวหงษ์</h4>
+          <h4 class="h_about">6110401579</h4>
+        </div>
+      </div>
+    </div>
+    <!--<div class="head">
       <h1>เกี่ยวกับเรา</h1>
     </div>
     <nav>
@@ -54,42 +77,54 @@
         <h4>6110401579</h4>
       </div>
     </div>
-    <div class="topic_member"></div>
+    <div class="topic_member"></div>-->
   </div>
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex'
+import { mapState, mapActions } from "vuex";
 export default {
-  data(){
-    return{
-      
-    }
+  data() {
+    return {};
   },
   computed: {
-    ...mapState('account',['user'])
-  }
+    ...mapState("account", ["user"]),
+  },
 };
 </script>
 
 <style>
-@font-face {
-  font-family: "Mitr";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: local("Mitr Regular"), local("Mitr-Regular"),
-    url(https://fonts.gstatic.com/s/mitr/v5/pxiLypw5ucZF-Sg4Maj_.woff2)
-      format("woff2");
-  unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
-}
 * {
   font-family: "Mitr";
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-nav {
+.h_about {
+  padding-left: 70px;
+  color: white;
+  text-align: start;
+}
+header {
+  background-color: #43658b;
+  color: white;
+  font-size: 50px;
+  padding: 50px 0px 10px;
+}
+.container-fluid.member_container {
+  background-color: #4e89ae;
+}
+.col.member_col {
+  padding: 50px 50px 30px 50px;
+}
+.member_pic {
+  border-radius: 20%;
+  border: 10px solid white;
+}
+.member_col:hover {
+  background-color: #ed6663;
+}
+/*nav {
   background-color: rgb(32, 32, 32);
   text-align: center;
 }
@@ -132,7 +167,7 @@ nav {
   padding-left: 100px;
 }
 button {
-  background-color: black; /* Green */
+  background-color: black; 
   border: none;
   color: white;
   padding: 10px;
@@ -142,5 +177,5 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-}
+}*/ ;
 </style>

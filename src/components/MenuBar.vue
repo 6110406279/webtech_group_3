@@ -68,4 +68,7 @@ export default {
   right: 10px;
   font-size: 25px;
 }
+.nav-item {
+  font-size: 20px;
+}
 </style>

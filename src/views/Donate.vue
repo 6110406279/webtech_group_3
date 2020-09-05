@@ -18,7 +18,11 @@
       <div class="card" style="width: 18rem;">
         <img src="src\assets\charity1.jpg" class="card-img-top" alt="..." />
         <div class="card-body-donate">
-          <router-link to="/Donate2" tag="button" style="background-color: black;color: white">จ.นครปฐม</router-link>
+          <router-link
+            to="/Donate2"
+            tag="button"
+            style="background-color: black;color: white"
+          >จ.นครปฐม</router-link>
         </div>
       </div>
     </li>
@@ -27,7 +31,11 @@
       <div class="card" style="width: 18rem;">
         <img src="src\assets\charity2.jpg" class="card-img-top" alt="..." />
         <div class="card-body-donate">
-          <router-link to="/Donate3" tag="button" style="background-color: black;color: white">จ.สงขลา</router-link>
+          <router-link
+            to="/Donate3"
+            tag="button"
+            style="background-color: black;color: white"
+          >จ.สงขลา</router-link>
         </div>
       </div>
     </li>
@@ -36,7 +44,11 @@
       <div class="card" style="width: 18rem;">
         <img src="src\assets\charity3.jpg" class="card-img-top" alt="..." />
         <div class="card-body-donate">
-          <router-link to="/Donate4" tag="button" style="background-color: black;color: white">จ.เชียงใหม่</router-link>
+          <router-link
+            to="/Donate4"
+            tag="button"
+            style="background-color: black;color: white"
+          >จ.เชียงใหม่</router-link>
         </div>
       </div>
     </li>
@@ -59,8 +71,6 @@
       <input type="number" v-model="new_item.needItem" />
 
       <button class="btn btn-primary" @click="addItem()">เพิ่ม</button>
-
-     
     </div>
 
     <br />
@@ -78,12 +88,14 @@
       <tbody style="background-color: gray;">
         <tr v-for="donation in donationList" :key="donation.id">
           <td>
-            <button class="btn danger"
-            v-if="user.email == 'admin@gmail.com'"
-            style= "background-color: red;"
-            @click="deleteItem(donation)">
-            ลบออก</button>{{donation.num}}
-            </td>
+            <button
+              class="btn danger"
+              v-if="user.email == 'admin@gmail.com'"
+              style="background-color: red;"
+              @click="deleteItem(donation)"
+            >ลบออก</button>
+            {{donation.num}}
+          </td>
           <td>{{donation.item}}</td>
           <td>{{donation.inStock}}</td>
           <td>{{donation.needItem}}</td>
@@ -105,19 +117,16 @@
               >บริจาค</button>
             </li>
           </td>
-
-          
         </tr>
       </tbody>
     </table>
-
   </div>
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex'
+import { mapState, mapActions } from "vuex";
 import { donationCollection } from "../firebase";
-import { provinceCollection } from "../firebase"
+import { provinceCollection } from "../firebase";
 export default {
   data() {
     return {
@@ -131,14 +140,14 @@ export default {
 
       new_item: {
         num: 0,
-        item: '',
+        item: "",
         inStock: 0,
         needItem: 0,
-      }
+      },
     };
   },
   computed: {
-    ...mapState('account',['user'])
+    ...mapState("account", ["user"]),
   },
 
   methods: {
@@ -151,59 +160,58 @@ export default {
       donation.inStock = num1;
       donation.needItem = num2;
       donationCollection.doc(donation.id).update({ ...donation });
-      
 
       if (newDonation.quantity > 0)
         alert("ขอบคุณที่ทำการบริจาคให้เด็กยากไร้ และเด็กด้อยโอกาสครับ :)");
     },
 
-    deleteItem(donation){
-      donationCollection.doc(donation.id).delete()
+    deleteItem(donation) {
+      donationCollection.doc(donation.id).delete();
     },
 
-    addItem(){
-      if(this.new_item.item!=""){
+    addItem() {
+      if (this.new_item.item != "") {
         donationCollection.add({
           num: parseInt(this.new_item.num),
           item: this.new_item.item,
           inStock: parseInt(this.new_item.inStock),
-          needItem: parseInt(this.new_item.needItem)
-        })
+          needItem: parseInt(this.new_item.needItem),
+        });
       }
 
       this.new_item = {
         num: 0,
-        item: '',
+        item: "",
         inStock: 0,
         needItem: 0,
-      }
-    }
-
+      };
+    },
   },
   firestore() {
     return {
       donationList: donationCollection.orderBy("num", "asc"),
-      provinceList: provinceCollection
+      provinceList: provinceCollection,
     };
   },
 };
 </script>
 
 <style scoped>
-.add-new-item{
+.add-new-item {
   font-family: "Mitr";
 }
-.table, .card-body-donate {
+.table,
+.card-body-donate {
   font-family: "Mitr";
 }
 
-.card-body-donate{
-  background-color:gray;
+.card-body-donate {
+  background-color: gray;
 }
 
 .card-img-top {
-    width: 100%;
-    height: 10vw;
-    object-fit: cover;
+  width: 100%;
+  height: 10vw;
+  object-fit: cover;
 }
 </style>
