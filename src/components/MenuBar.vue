@@ -25,10 +25,10 @@
               aria-expanded="false"
             >Donate</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/Donate">Donate Page #1</a>
-              <a class="dropdown-item" href="/Donate2">Donate Page #2</a>
-              <a class="dropdown-item" href="/Donate3">Donate Page #3</a>
-              <a class="dropdown-item" href="/Donate4">Donate Page #4</a>
+              <a class="dropdown-item" href="/Donate">บริจาค : จังหวัดกรุงเทพมหานคร</a>
+              <a class="dropdown-item" href="/Donate2">บริจาค : จังหวัดนครปฐม</a>
+              <a class="dropdown-item" href="/Donate3">บริจาค : จังหวัดสงขลา</a>
+              <a class="dropdown-item" href="/Donate4">บริจาค : จังหวัดเชียงใหม่</a>
             </div>
           </li>
 
@@ -38,6 +38,10 @@
 
           <li class="nav-item" v-if="user">
             <router-link to="/logout" class="nav-link">Logout</router-link>
+          </li>
+          <li>
+            <form class="form-inline" v-if="user">Welcome: {{user.displayName}}</form>
+            <form class="form-inline" v-else>Please login to continue</form>
           </li>
         </ul>
       </div>
@@ -57,5 +61,11 @@ export default {
 <style>
 .navbar-collapse {
   font-family: "Mitr";
+}
+
+.form-inline {
+  position: absolute;
+  right: 10px;
+  font-size: 25px;
 }
 </style>

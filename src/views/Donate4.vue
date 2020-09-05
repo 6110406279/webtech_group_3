@@ -43,6 +43,26 @@
 
     <br />
     <br />
+    <!-- adding new donate item -->
+    <div class="add-new-item" v-if="user.email == 'admin@gmail.com'">
+      <label>ลำดับ:</label>
+      <input type="number" v-model="new_item.num" />
+
+      <label>ของบริจาคใหม่:</label>
+      <input type="text" v-model="new_item.item" />
+
+      <label>จำนวนคงเหลือ:</label>
+      <input type="number" v-model="new_item.inStock" />
+
+      <label>จำนวนที่ต้องการ:</label>
+      <input type="number" v-model="new_item.needItem" />
+
+      <button class="btn btn-primary" @click="addItem()">เพิ่ม</button>
+
+     
+    </div>
+
+    <br />
     <table class="table">
       <thead style="background-color: #40434B; color:white">
         <tr>
@@ -56,7 +76,12 @@
 
       <tbody style="background-color: gray;">
         <tr v-for="donation in donationList4" :key="donation.id">
-          <td>{{donation.num}}</td>
+          <td>
+            <button class="btn danger"
+            v-if="user.email == 'admin@gmail.com'"
+            style= "background-color: red;"
+            @click="deleteItem(donation)">
+            ลบออก</button>{{donation.num}}</td>
           <td>{{donation.item}}</td>
           <td>{{donation.inStock}}</td>
           <td>{{donation.needItem}}</td>
@@ -96,6 +121,12 @@ export default {
       newDonation: {
         quantity: 0,
       },
+      new_item: {
+        num: 0,
+        item: '',
+        inStock: 0,
+        needItem: 0,
+      }
     };
   },
   computed: {
@@ -111,11 +142,33 @@ export default {
       }
       donation.inStock = num1;
       donation.needItem = num2;
-      donationCollection2.doc(donation.id).update({ ...donation });
+      donationCollection4.doc(donation.id).update({ ...donation });
 
       if (newDonation.quantity > 0)
         alert("ขอบคุณที่ทำการบริจาคให้เด็กยากไร้ และเด็กด้อยโอกาสครับ :)");
     },
+    deleteItem(donation){
+      donationCollection4.doc(donation.id).delete()
+    },
+
+    addItem(){
+      if(this.new_item.item!=""){
+        donationCollection4.add({
+          num: parseInt(this.new_item.num),
+          item: this.new_item.item,
+          inStock: parseInt(this.new_item.inStock),
+          needItem: parseInt(this.new_item.needItem)
+        })
+      }
+
+      this.new_item = {
+        num: 0,
+        item: '',
+        inStock: 0,
+        needItem: 0,
+      }
+    }
+
   },
   firestore() {
     return {
@@ -126,6 +179,9 @@ export default {
 </script>
 
 <style>
+.add-new-item{
+  font-family: "Mitr";
+}
 .table, .card-body-donate {
   font-family: "Mitr";
 }

@@ -18,7 +18,11 @@
       <div class="card" style="width: 18rem;">
         <img src="src\assets\charity4.jpg" class="card-img-top" alt="..." />
         <div class="card-body-donate">
-          <router-link to="/Donate" tag="button" style="background-color: black;color: white">จ.กรุงเทพ</router-link>
+          <router-link
+            to="/Donate"
+            tag="button"
+            style="background-color: black;color: white"
+          >จ.กรุงเทพ</router-link>
         </div>
       </div>
     </li>
@@ -27,7 +31,11 @@
       <div class="card" style="width: 18rem;">
         <img src="src\assets\charity2.jpg" class="card-img-top" alt="..." />
         <div class="card-body-donate">
-          <router-link to="/Donate3" tag="button" style="background-color: black;color: white">จ.สงขลา</router-link>
+          <router-link
+            to="/Donate3"
+            tag="button"
+            style="background-color: black;color: white"
+          >จ.สงขลา</router-link>
         </div>
       </div>
     </li>
@@ -36,12 +44,34 @@
       <div class="card" style="width: 18rem;">
         <img src="src\assets\charity3.jpg" class="card-img-top" alt="..." />
         <div class="card-body-donate">
-          <router-link to="/Donate4" tag="button" style="background-color: black;color: white">จ.เชียงใหม่</router-link>
+          <router-link
+            to="/Donate4"
+            tag="button"
+            style="background-color: black;color: white"
+          >จ.เชียงใหม่</router-link>
         </div>
       </div>
     </li>
 
     <br />
+    <br />
+    <!-- adding new donate item -->
+    <div class="add-new-item" v-if="user.email == 'admin@gmail.com'">
+      <label>ลำดับ:</label>
+      <input type="number" v-model="new_item.num" />
+
+      <label>ของบริจาคใหม่:</label>
+      <input type="text" v-model="new_item.item" />
+
+      <label>จำนวนคงเหลือ:</label>
+      <input type="number" v-model="new_item.inStock" />
+
+      <label>จำนวนที่ต้องการ:</label>
+      <input type="number" v-model="new_item.needItem" />
+
+      <button class="btn btn-primary" @click="addItem()">เพิ่ม</button>
+    </div>
+
     <br />
     <table class="table">
       <thead style="background-color: #40434B; color:white">
@@ -56,13 +86,22 @@
 
       <tbody style="background-color: gray;">
         <tr v-for="donation in donationList2" :key="donation.id">
-          <td>{{donation.num}}</td>
+          <td>
+            <button
+              class="btn danger"
+              v-if="user.email == 'admin@gmail.com'"
+              style="background-color: red;"
+              @click="deleteItem(donation)"
+            >ลบออก</button>
+            {{donation.num}}
+          </td>
           <td>{{donation.item}}</td>
           <td>{{donation.inStock}}</td>
           <td>{{donation.needItem}}</td>
           <td>
             <li>
-              <input style="background-color: white;"
+              <input
+                style="background-color: white;"
                 type="number"
                 id="quantity"
                 name="quantity"
@@ -71,7 +110,7 @@
               />
             </li>
             <li>
-              <button 
+              <button
                 v-if="donation.needItem!=0"
                 class="btn btn-primary"
                 @click="donateItem(donation, newDonation)"
@@ -96,6 +135,12 @@ export default {
       newDonation: {
         quantity: 0,
       },
+      new_item: {
+        num: 0,
+        item: '',
+        inStock: 0,
+        needItem: 0,
+      }
     };
   },
   computed: {
@@ -116,7 +161,32 @@ export default {
       if (newDonation.quantity > 0)
         alert("ขอบคุณที่ทำการบริจาคให้เด็กยากไร้ และเด็กด้อยโอกาสครับ :)");
     },
+        deleteItem(donation){
+      donationCollection2.doc(donation.id).delete()
+    },
+
+    addItem(){
+      if(this.new_item.item!=""){
+        donationCollection2.add({
+          num: parseInt(this.new_item.num),
+          item: this.new_item.item,
+          inStock: parseInt(this.new_item.inStock),
+          needItem: parseInt(this.new_item.needItem)
+        })
+      }
+
+      this.new_item = {
+        num: 0,
+        item: '',
+        inStock: 0,
+        needItem: 0,
+      }
+    },
+
+
   },
+
+  
   firestore() {
     return {
       donationList2: donationCollection2.orderBy("num", "asc"),
@@ -126,17 +196,21 @@ export default {
 </script>
 
 <style>
-.table, .card-body-donate {
+.add-new-item{
+  font-family: "Mitr";
+}
+.table,
+.card-body-donate {
   font-family: "Mitr";
 }
 
-.card-body-donate{
-    background-color:gray;
+.card-body-donate {
+  background-color: gray;
 }
 
 .card-img-top {
-    width: 100%;
-    height: 10vw;
-    object-fit: cover;
+  width: 100%;
+  height: 10vw;
+  object-fit: cover;
 }
 </style>

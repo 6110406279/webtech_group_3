@@ -31,21 +31,22 @@
               <table class="table">
                 <thead style="background-color: #40434B; color:white; font-family:Mitr" >
                   <tr >
-                    <th>น้ำดื่ม</th>
-                    <th>อาหาร</th>
-                    <th>อุปกรณ์การเรียน</th>
-                    <th>อุปกรณ์สำหรับออกกำลังกาย</th>
+                    <th>กรุงเทพมหานคร</th>
+                    <th>นครปฐม</th>
+                    <th>สงขลา</th>
+                    <th>เชียงใหม่</th>
                   </tr>
                 </thead>
                 <tbody style="background-color: gray; font-family:Mitr">
-                    <th>285</th>
-                    <th>624</th>
-                    <th>572</th>
-                    <th>287</th>
+                    <tr v-for="province in provinceList" :key="province.id">
+                    <td>{{province.province1}}</td>
+                    <td>{{province.province2}}</td>
+                    <td>{{province.province3}}</td>
+                    <td>{{province.province4}}</td>
+                  </tr>
                 </tbody>
 
               </table>
-
 
               <h3>
                 <router-link to="/Donate" tag="button" style="font-family:Mitr">บริจาคสิ่งของ</router-link>
@@ -98,17 +99,15 @@
 
 <script>
 import {mapState, mapActions} from 'vuex'
-import { donationCollection5 } from "../firebase";
-import { donationCollection } from "../firebase";
+import { totalDonatedCollection } from "../firebase";
+import { provinceCollection } from "../firebase";
+
 export default {
   data() {
-
     return {
-      item1: 44,
       value: 45,
       max: 100,
-      donationList: [],
-      donated: [],
+      provinceList: []
     };
   },
   methods: {
@@ -118,8 +117,7 @@ export default {
   },
   firestore() {
     return {
-      donationList: donationCollection.orderBy("num", "asc"),
-      donated: donationCollection5.orderBy("num","asc")
+      provinceList: provinceCollection,
     };
   },
   computed: {
