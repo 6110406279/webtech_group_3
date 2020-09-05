@@ -7,7 +7,7 @@
 
       <div class="navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item">
             <router-link to="/" class="nav-link">Home</router-link>
           </li>
           <li class="nav-item">
