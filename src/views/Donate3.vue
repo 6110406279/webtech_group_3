@@ -1,16 +1,28 @@
 <template>
   <div>
-    <h1
+    <div class="container-fluid">
+      <div style="background-color: #aa4a30;padding:30px 0 30px 50px" class="row">
+        <h1 style="color:white">บริจาค: จังหวัดสงขลา</h1>
+      </div>
+      <div class="row" style="background-color: #d57149;padding:10px 0 10px 50px">
+        <h3 style="color:#ffc93c">เลือกเมืองอื่นๆ</h3>
+        <h3>
+          <router-link style="padding-left:50px;color:white" to="/Donate">กรุงเทพมหานคร</router-link>
+        </h3>
+        <h3>
+          <router-link style="padding-left:50px;color:white" to="/Donate2">จ.นครปฐม</router-link>
+        </h3>
+        <h3>
+          <router-link style="padding-left:50px;color:white" to="/Donate3">จ.สงขลา</router-link>
+        </h3>
+        <h3>
+          <router-link style="padding-left:50px;color:white" to="/Donate4">จ.เชียงใหม่</router-link>
+        </h3>
+      </div>
+    </div>
+    <!--<h1
       style="background-image: linear-gradient(to right, #2d4057, #2d4057, #05dfd7);"
     >หน้าบริจาคของ</h1>
-    <h3 style="background-color: #40434B;">
-      <li>
-        <router-link to="/" tag="button" style="background-color: black;color: white">หน้าหลัก</router-link>
-      </li>
-      <li>
-        <router-link to="/About" tag="button" style="background-color: black;color: white">ผู้บริจาค</router-link>
-      </li>
-    </h3>
 
     <h3 style="color:red">จังหวัดสงขลา</h3>
 
@@ -18,7 +30,11 @@
       <div class="card" style="width: 18rem;">
         <img src="src\assets\charity1.jpg" class="card-img-top" alt="..." />
         <div class="card-body-donate">
-          <router-link to="/Donate2" tag="button" style="background-color: black;color: white">จ.นครปฐม</router-link>
+          <router-link
+            to="/Donate2"
+            tag="button"
+            style="background-color: black;color: white"
+          >จ.นครปฐม</router-link>
         </div>
       </div>
     </li>
@@ -27,7 +43,11 @@
       <div class="card" style="width: 18rem;">
         <img src="src\assets\charity4.jpg" class="card-img-top" alt="..." />
         <div class="card-body-donate">
-          <router-link to="/Donate" tag="button" style="background-color: black;color: white">จ.กรุงเทพ</router-link>
+          <router-link
+            to="/Donate"
+            tag="button"
+            style="background-color: black;color: white"
+          >จ.กรุงเทพ</router-link>
         </div>
       </div>
     </li>
@@ -36,35 +56,38 @@
       <div class="card" style="width: 18rem;">
         <img src="src\assets\charity3.jpg" class="card-img-top" alt="..." />
         <div class="card-body-donate">
-          <router-link to="/Donate4" tag="button" style="background-color: black;color: white">จ.เชียงใหม่</router-link>
+          <router-link
+            to="/Donate4"
+            tag="button"
+            style="background-color: black;color: white"
+          >จ.เชียงใหม่</router-link>
         </div>
       </div>
     </li>
 
     <br />
-    <br />
+    <br />-->
     <!-- adding new donate item -->
-    <div class="add-new-item" v-if="user.email == 'admin@gmail.com'">
-      <label>ลำดับ:</label>
-      <input type="number" v-model="new_item.num" />
+    <div class="adminBox pt-3 pb-2">
+      <div class="add-new-item" v-if="user.email == 'admin@gmail.com'">
+        <label>ลำดับ:</label>
+        <input style="height:30px" type="number" v-model="new_item.num" />
 
-      <label>ของบริจาคใหม่:</label>
-      <input type="text" v-model="new_item.item" />
+        <label>ของบริจาคใหม่:</label>
+        <input style="height:30px" type="text" v-model="new_item.item" />
 
-      <label>จำนวนคงเหลือ:</label>
-      <input type="number" v-model="new_item.inStock" />
+        <label>จำนวนคงเหลือ:</label>
+        <input style="height:30px" type="number" v-model="new_item.inStock" />
 
-      <label>จำนวนที่ต้องการ:</label>
-      <input type="number" v-model="new_item.needItem" />
+        <label>จำนวนที่ต้องการ:</label>
+        <input style="height:30px" type="number" v-model="new_item.needItem" />
 
-      <button class="btn btn-primary" @click="addItem()">เพิ่ม</button>
-
-     
+        <button style="background-color:lightgray;height:30px" class="btn" @click="addItem()">เพิ่ม</button>
+      </div>
     </div>
 
-    <br />
     <table class="table">
-      <thead style="background-color: #40434B; color:white">
+      <thead style="background-color: #5D5D5D; color:white">
         <tr>
           <th>ลำดับ</th>
           <th>สิ่งของบริจาค</th>
@@ -74,20 +97,24 @@
         </tr>
       </thead>
 
-      <tbody style="background-color: gray;">
+      <tbody style="background-color: #CFCFCF;">
         <tr v-for="donation in donationList3" :key="donation.id">
           <td>
-            <button class="btn danger"
-            v-if="user.email == 'admin@gmail.com'"
-            style= "background-color: red;"
-            @click="deleteItem(donation)">
-            ลบออก</button>{{donation.num}}</td>
+            <button
+              class="btn danger"
+              v-if="user.email == 'admin@gmail.com'"
+              style="background-color: red;height:30px"
+              @click="deleteItem(donation)"
+            >ลบออก</button>
+            {{donation.num}}
+          </td>
           <td>{{donation.item}}</td>
           <td>{{donation.inStock}}</td>
           <td>{{donation.needItem}}</td>
           <td>
             <li>
-              <input style="background-color: white;"
+              <input
+                style="background-color: white;"
                 type="number"
                 id="quantity"
                 name="quantity"
@@ -96,9 +123,10 @@
               />
             </li>
             <li>
-              <button 
+              <button
                 v-if="donation.needItem!=0"
                 class="btn btn-primary"
+                style="height:30px"
                 @click="donateItem(donation, newDonation)"
               >บริจาค</button>
             </li>
@@ -110,7 +138,7 @@
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex'
+import { mapState, mapActions } from "vuex";
 import { donationCollection3 } from "../firebase";
 export default {
   data() {
@@ -123,14 +151,14 @@ export default {
       },
       new_item: {
         num: 0,
-        item: '',
+        item: "",
         inStock: 0,
         needItem: 0,
-      }
+      },
     };
   },
   computed: {
-    ...mapState('account',['user'])
+    ...mapState("account", ["user"]),
   },
 
   methods: {
@@ -147,28 +175,27 @@ export default {
       if (newDonation.quantity > 0)
         alert("ขอบคุณที่ทำการบริจาคให้เด็กยากไร้ และเด็กด้อยโอกาสครับ :)");
     },
-    deleteItem(donation){
-      donationCollection3.doc(donation.id).delete()
+    deleteItem(donation) {
+      donationCollection3.doc(donation.id).delete();
     },
 
-    addItem(){
-      if(this.new_item.item!=""){
+    addItem() {
+      if (this.new_item.item != "") {
         donationCollection3.add({
           num: parseInt(this.new_item.num),
           item: this.new_item.item,
           inStock: parseInt(this.new_item.inStock),
-          needItem: parseInt(this.new_item.needItem)
-        })
+          needItem: parseInt(this.new_item.needItem),
+        });
       }
 
       this.new_item = {
         num: 0,
-        item: '',
+        item: "",
         inStock: 0,
         needItem: 0,
-      }
-    }
-
+      };
+    },
   },
   firestore() {
     return {
@@ -179,20 +206,11 @@ export default {
 </script>
 
 <style>
-.add-new-item{
+.add-new-item {
   font-family: "Mitr";
 }
-.table, .card-body-donate {
+.table,
+.card-body-donate {
   font-family: "Mitr";
-}
-
-.card-body-donate{
-    background-color:gray;
-}
-
-.card-img-top {
-    width: 100%;
-    height: 10vw;
-    object-fit: cover;
 }
 </style>

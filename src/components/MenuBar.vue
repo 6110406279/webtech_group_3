@@ -25,7 +25,7 @@
               aria-expanded="false"
             >Donate</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/Donate">บริจาค : จังหวัดกรุงเทพมหานคร</a>
+              <a class="dropdown-item" href="/Donate">บริจาค : กรุงเทพมหานคร</a>
               <a class="dropdown-item" href="/Donate2">บริจาค : จังหวัดนครปฐม</a>
               <a class="dropdown-item" href="/Donate3">บริจาค : จังหวัดสงขลา</a>
               <a class="dropdown-item" href="/Donate4">บริจาค : จังหวัดเชียงใหม่</a>
